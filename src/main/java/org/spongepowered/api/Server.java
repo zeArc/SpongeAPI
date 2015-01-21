@@ -26,17 +26,11 @@ package org.spongepowered.api;
 
 import com.google.common.base.Optional;
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.status.Favicon;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.WorldGenerator;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.InetSocketAddress;
-import java.net.URL;
 import java.util.Collection;
 import java.util.UUID;
 
@@ -171,9 +165,9 @@ public interface Server {
     /**
      * Sends the given message to all online players.
      *
-     * @param message The message to send
+     * @param text The message to send
      */
-    void broadcastMessage(Message message);
+    void broadcastMessage(Text text);
 
     /**
      * Gets the bound {@link InetSocketAddress} this server is accepting connections from.
@@ -208,6 +202,6 @@ public interface Server {
      * 
      * @return The server's default description (MOTD)
      */
-    Message getMotd();
+    Text getMotd();
 
 }

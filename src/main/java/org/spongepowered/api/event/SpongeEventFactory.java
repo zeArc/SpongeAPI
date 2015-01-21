@@ -55,7 +55,7 @@ import org.spongepowered.api.event.weather.WeatherChangeEvent;
 import org.spongepowered.api.event.world.*;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.status.StatusClient;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.CommandSource;
 import org.spongepowered.api.util.event.factory.ClassGeneratorProvider;
 import org.spongepowered.api.util.event.factory.EventFactory;
@@ -471,7 +471,7 @@ public final class SpongeEventFactory {
         return createEvent(PlayerChatEvent.class, values);
     }
 
-    public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Message deathMessage, Collection<Item> droppedItems) {
+    public static PlayerDeathEvent createPlayerDeath(Game game, Cause cause, Player player, Text deathMessage, Collection<Item> droppedItems) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("cause", Optional.fromNullable(cause));
@@ -521,7 +521,7 @@ public final class SpongeEventFactory {
         return createEvent(PlayerInteractEvent.class, values);
     }
 
-    public static PlayerJoinEvent createPlayerJoin(Game game, Player player, Message joinMessage) {
+    public static PlayerJoinEvent createPlayerJoin(Game game, Player player, Text joinMessage) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);
@@ -560,7 +560,7 @@ public final class SpongeEventFactory {
         return createEvent(PlayerPlaceBlockEvent.class, values);
     }
 
-    public static PlayerQuitEvent createPlayerQuit(Game game, Player player, Message quitMessage) {
+    public static PlayerQuitEvent createPlayerQuit(Game game, Player player, Text quitMessage) {
         Map<String, Object> values = Maps.newHashMap();
         values.put("game", game);
         values.put("entity", player);

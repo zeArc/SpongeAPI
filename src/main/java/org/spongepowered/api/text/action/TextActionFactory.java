@@ -26,7 +26,7 @@ package org.spongepowered.api.text.action;
 
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.text.Text;
 
 import java.net.URL;
 
@@ -77,10 +77,10 @@ interface TextActionFactory {
      * {@link org.spongepowered.api.text.action.HoverAction.ShowText} instance
      * that will show text when it is hovered.
      *
-     * @param message The message to show
+     * @param text The message to show
      * @return The created hover action instance
      */
-    HoverAction.ShowText createShowText(Message message);
+    HoverAction.ShowText createShowText(Text text);
 
     /**
      * Creates a new {@link HoverAction.ShowItem} instance that will show
