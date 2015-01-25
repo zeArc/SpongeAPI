@@ -22,50 +22,65 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.util.bans;
 
-package org.spongepowered.api.event.entity.living.player;
+import com.google.common.base.Optional;
+import org.spongepowered.api.entity.player.User;
+import org.spongepowered.api.text.message.Message;
+import org.spongepowered.api.util.command.CommandSource;
 
-
-import org.spongepowered.api.entity.living.Human;
-import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.event.entity.living.human.HumanEvent;
-import org.spongepowered.api.event.user.UserEvent;
+import java.util.Date;
 
 /**
- * Describes events which contain a {@link Player}.
+ * Represents a ban made on a player.
  */
-public interface PlayerEvent extends HumanEvent, UserEvent {
+public interface Ban {
 
     /**
-     * Gets the {@link Player} involved involved in this event.
+     * Gets the user this ban applies to.
      *
-     * @return The {@link Player} involved
+     * @return The user
      */
-    Player getPlayer();
+    User getUser();
 
     /**
-     * {@inheritDoc}
+     * Get the reason for the ban.
+     *
+     * @return The reason specified for the ban.
      */
-    @Override
-    Player getHuman();
+    Message.Text getReason();
 
     /**
-     * {@inheritDoc}
+     * Gets the start date of the ban.
+     *
+     * @return Creation date of the ban
      */
-    @Override
-    Player getLiving();
+    Date getStartDate();
 
     /**
-     * {@inheritDoc}
+     * Gets the source that banned the user, if available.
+     *
+     * @return The banning source or {@link Optional#absent()}
      */
-    @Override
-    Player getEntity();
+    Optional<CommandSource> getSource();
 
     /**
-     * {@inheritDoc}
+     * Gets the expiration date of this ban, if available.
+     *
+     * @return Expiration time of the ban or {@link Optional#absent()}
      */
-    @Override
-    Player getUser();
+    Optional<Date> getExpirationDate();
+
+    /**
+     * Gets whether this ban is indefinitely long, e.g. has no expiration date.
+     *
+     * @return True if this ban has no expiration date, otherwise false
+     */
+    boolean isIndefinite();
+
+    /**
+     * Pardons this ban, or removes the ban from the User.
+     */
+    void pardon();
 
 }
