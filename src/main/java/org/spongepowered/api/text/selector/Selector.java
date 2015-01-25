@@ -80,7 +80,8 @@ public interface Selector {
     List<Argument<?>> getArguments();
 
     /**
-     * Resolves this {@link Selector} to a list of entities around (0|0|0) in the given {@link Extent}.
+     * Resolves this {@link Selector} to a list of entities around (0|0|0) in
+     * the given {@link Extent}.
      *
      * @param extent The extent to search for targets
      * @return The matched entities
@@ -88,7 +89,8 @@ public interface Selector {
     List<Entity> resolve(Extent extent);
 
     /**
-     * Resolves this {@link Selector} to a list of entities around the given {@link Location}.
+     * Resolves this {@link Selector} to a list of entities around the given
+     * {@link Location}.
      *
      * @param location The location to resolve the selector around
      * @return The matched entities
