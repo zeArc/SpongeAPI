@@ -53,7 +53,7 @@ public interface TitleBuilder {
     /**
      * Sets the duration in ticks of the fade in effect of the title. Once this
      * period of time is over the title will stay for the amount of time
-     * specified in {@link #stay(int)}.
+     * specified in {@link #stay(Integer)}.
      *
      * <p> The default value for Vanilla is 20 (1 second). </p>
      *
@@ -66,7 +66,7 @@ public interface TitleBuilder {
     /**
      * Sets the duration in ticks how long the title should stay on the screen.
      * Once this period of time is over the title will fade out using the
-     * duration specified in {@link #fadeOut(int)}.
+     * duration specified in {@link #fadeOut(Integer)}.
      *
      * <p> The default value for Vanilla is 60 (3 seconds). </p>
      *
