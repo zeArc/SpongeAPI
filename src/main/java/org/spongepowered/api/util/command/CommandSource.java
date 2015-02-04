@@ -25,6 +25,7 @@
 
 package org.spongepowered.api.util.command;
 
+import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.text.Text;
 
 /**
@@ -33,7 +34,7 @@ import org.spongepowered.api.text.Text;
  * <p>Examples of potential implementations include players, the server console,
  * RCON clients, web-based clients, command blocks, and so on.</p>
  */
-public interface CommandSource {
+public interface CommandSource extends Subject {
 
     /**
      * Sends the formatted text message(s) to source when possible. If text formatting
