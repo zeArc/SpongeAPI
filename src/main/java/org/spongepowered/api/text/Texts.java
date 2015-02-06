@@ -24,6 +24,8 @@
  */
 package org.spongepowered.api.text;
 
+import org.spongepowered.api.text.format.TextColor;
+import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 
@@ -119,6 +121,44 @@ public final class Texts {
      */
     public static Text.Literal of(String content) {
         return factory.createPlain(content);
+    }
+
+    /**
+     * Joins a sequence of text objects together.
+     *
+     * @param texts The texts object
+     * @return A text object that joins the given text objects
+     */
+    public static Text join(Text... texts) {
+        return builder().append(texts).build();
+    }
+
+    /**
+     * Builds a Text object from a given array of objects.
+     *
+     * <p>For instance, you can use this like
+     * <code>Txt.of(TextColors.DARK_AQUA, "Hi", TextColors.AQUA, "Bye")</code>
+     * </p>
+     *
+     * @param objects The object array
+     * @throws IllegalArgumentException If a passed-in argument is not of type TextColor, String or Text
+     * @return The built text object
+     */
+    public static Text of(Object... objects) throws IllegalArgumentException {
+        TextBuilder builder = builder();
+        TextColor color = TextColors.NONE;
+        for (Object obj: objects) {
+            if (obj instanceof TextColor) {
+                color = (TextColor) obj;
+            } else if (obj instanceof String) {
+                builder.append(builder((String) obj).color(color).build());
+            } else if (obj instanceof Text) {
+                builder.append((Text) obj);
+            } else {
+                throw new IllegalArgumentException("Unexpected type for object " + obj);
+            }
+        }
+        return builder.build();
     }
 
     /**
@@ -234,5 +274,5 @@ public final class Texts {
     public static String replaceCodes(String text, char from, char to) {
         return factory.replaceLegacyCodes(text, from, to);
     }
-
+    
 }
