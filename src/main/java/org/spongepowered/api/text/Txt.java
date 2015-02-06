@@ -4,7 +4,7 @@ import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
 
 /**
- * A utility class that makes working with text far easier.
+ * A utility class that adds some shorthands for constructing {@link Text} objects.
  *
  * <p>While some methods are simply proxies or are one-liners, chained together
  * they save a lot of character space, and can be statically imported.</p>
@@ -49,9 +49,7 @@ public final class Txt {
             if (obj instanceof TextColor) {
                 color = (TextColor) obj;
             } else if (obj instanceof String) {
-                builder.append(
-                        Texts.builder((String) obj).color(color).build()
-                );
+                builder.append(Texts.builder((String) obj).color(color).build());
             } else if (obj instanceof Text) {
                 builder.append((Text) obj);
             } else {
@@ -77,7 +75,7 @@ public final class Txt {
      * @param content The content of the text
      * @return The constructed text object
      */
-    public static Text dark_blue(String content) {
+    public static Text darkBlue(String content) {
         return Texts.builder(content).color(TextColors.DARK_BLUE).build();
     }
 
@@ -87,7 +85,7 @@ public final class Txt {
      * @param content The content of the text
      * @return The constructed text object
      */
-    public static Text dark_green(String content) {
+    public static Text darkGreen(String content) {
         return Texts.builder(content).color(TextColors.DARK_GREEN).build();
     }
 
@@ -97,7 +95,7 @@ public final class Txt {
      * @param content The content of the text
      * @return The constructed text object
      */
-    public static Text dark_aqua(String content) {
+    public static Text darkAqua(String content) {
         return Texts.builder(content).color(TextColors.DARK_AQUA).build();
     }
 
@@ -107,7 +105,7 @@ public final class Txt {
      * @param content The content of the text
      * @return The constructed text object
      */
-    public static Text dark_red(String content) {
+    public static Text darkRed(String content) {
         return Texts.builder(content).color(TextColors.DARK_RED).build();
     }
 
@@ -117,7 +115,7 @@ public final class Txt {
      * @param content The content of the text
      * @return The constructed text object
      */
-    public static Text dark_purple(String content) {
+    public static Text darkPurple(String content) {
         return Texts.builder(content).color(TextColors.DARK_PURPLE).build();
     }
 
@@ -147,7 +145,7 @@ public final class Txt {
      * @param content The content of the text
      * @return The constructed text object
      */
-    public static Text dark_gray(String content) {
+    public static Text darkGray(String content) {
         return Texts.builder(content).color(TextColors.DARK_GRAY).build();
     }
 
@@ -197,7 +195,7 @@ public final class Txt {
      * @param content The content of the text
      * @return The constructed text object
      */
-    public static Text light_purple(String content) {
+    public static Text lightPurple(String content) {
         return Texts.builder(content).color(TextColors.LIGHT_PURPLE).build();
     }
 
