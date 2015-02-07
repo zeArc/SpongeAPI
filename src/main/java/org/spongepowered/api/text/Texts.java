@@ -26,11 +26,13 @@ package org.spongepowered.api.text;
 
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
+import org.spongepowered.api.text.format.TextStyle;
+import org.spongepowered.api.text.format.TextStyles;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 
 /**
- * Utility class to work with and create Messages.
+ * Utility class to work with and create {@link Text}.
  */
 public final class Texts {
 
@@ -126,11 +128,32 @@ public final class Texts {
     /**
      * Joins a sequence of text objects together.
      *
-     * @param texts The texts object
+     * @param texts The text to join
      * @return A text object that joins the given text objects
      */
     public static Text join(Text... texts) {
         return builder().append(texts).build();
+    }
+
+    /**
+     * Joins a sequence of text objects together along with a separator.
+     *
+     * @param separator The separator
+     * @param texts The text to join
+     * @return A text object that joins the given text objects
+     */
+    public static Text join(Text separator, Text... texts) {
+        if (texts.length < 2) {
+            return join(texts);
+        } else {
+            TextBuilder builder = builder();
+            for (int i = 0; i < texts.length - 1; i++) {
+                builder.append(texts[i]);
+                builder.append(separator);
+            }
+            builder.append(texts[texts.length - 1]);
+            return builder.build();
+        }
     }
 
     /**
@@ -147,9 +170,12 @@ public final class Texts {
     public static Text of(Object... objects) throws IllegalArgumentException {
         TextBuilder builder = builder();
         TextColor color = TextColors.NONE;
+        TextStyle style = TextStyles.NONE;
         for (Object obj: objects) {
             if (obj instanceof TextColor) {
                 color = (TextColor) obj;
+            } else if (obj instanceof TextStyle) {
+                style = obj.equals(TextStyles.RESET) ? TextStyles.NONE : style.and((TextStyle) obj);
             } else if (obj instanceof String) {
                 builder.append(builder((String) obj).color(color).build());
             } else if (obj instanceof Text) {
