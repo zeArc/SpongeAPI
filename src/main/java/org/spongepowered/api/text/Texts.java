@@ -164,7 +164,8 @@ public final class Texts {
      * </p>
      *
      * @param objects The object array
-     * @throws IllegalArgumentException If a passed-in argument is not of type TextColor, String or Text
+     * @throws IllegalArgumentException If a passed-in argument is not of type
+     *         TextColor, TextStyle, String or Text
      * @return The built text object
      */
     public static Text of(Object... objects) throws IllegalArgumentException {
