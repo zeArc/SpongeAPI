@@ -44,6 +44,10 @@ targetCompatibility = '1.6'
 // Project repositories
 repositories {
     mavenCentral()
+    maven {
+        name = 'oss-sonatype'
+        url = 'https://oss.sonatype.org/content/repositories/public/'
+    }
 }
 
 configurations {
@@ -59,6 +63,7 @@ dependencies {
     compile 'com.typesafe:config:1.2.1'
     compile 'ninja.leaping.configurate:configurate-hocon:0.2'
     compile 'com.flowpowered:flow-math:1.0.0'
+    compile 'org.spout:caustic-lwjgl:1.0.0-SNAPSHOT'
     compile 'org.ow2.asm:asm:5.0.3'
     testCompile 'junit:junit:4.11'
     testCompile 'org.hamcrest:hamcrest-library:1.3'

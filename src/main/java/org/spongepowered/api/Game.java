@@ -54,6 +54,12 @@ public interface Game {
     Optional<Server> getServer();
 
     /**
+     * Gets the running {@link Client}, if any.
+     * @return The client
+     */
+    Optional<Client> getClient();
+
+    /**
      * Gets the {@link PluginManager}.
      *
      * @return The plugin manager
