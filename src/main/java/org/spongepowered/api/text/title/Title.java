@@ -60,9 +60,12 @@ public class Title {
      * @param subtitle The subtitle of the title, or {@code null} for default
      * @param fadeIn The fade in time of the title, or {@code null} for default
      * @param stay The stay time of the title, or {@code null} for default
-     * @param fadeOut The fade out time of the title, or {@code null} for default
-     * @param clear {@code true} if this title clears the currently displayed one first
-     * @param reset {@code true} if this title resets all settings to default first
+     * @param fadeOut The fade out time of the title, or {@code null} for
+     *        default
+     * @param clear {@code true} if this title clears the currently displayed
+     *        one first
+     * @param reset {@code true} if this title resets all settings to default
+     *        first
      */
     public Title(@Nullable Text title, @Nullable Text subtitle, @Nullable Integer fadeIn, @Nullable Integer stay, @Nullable Integer fadeOut,
             boolean clear, boolean reset) {

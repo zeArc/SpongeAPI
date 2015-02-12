@@ -32,8 +32,7 @@ import org.spongepowered.api.text.Text;
 import javax.annotation.Nullable;
 
 /**
- * Represents a builder class to create immutable {@link Title}
- * configurations.
+ * Represents a builder class to create immutable {@link Title} configurations.
  *
  * @see Title
  */
@@ -54,8 +53,8 @@ public class TitleBuilder {
     }
 
     /**
-     * Constructs a new {@link TitleBuilder} with the properties
-     * of the given {@link Title} as initial values.
+     * Constructs a new {@link TitleBuilder} with the properties of the given
+     * {@link Title} as initial values.
      *
      * @param title The title to copy the values from
      */
@@ -130,8 +129,8 @@ public class TitleBuilder {
      *
      * <p>The default value for Vanilla is 20 (1 second).</p>
      *
-     * @param fadeIn The amount of ticks (1/20 second) for the fade in effect, or
-     *            {@code null} to reset
+     * @param fadeIn The amount of ticks (1/20 second) for the fade in effect,
+     *        or {@code null} to reset
      * @return This title builder
      * @see Title#getFadeIn()
      */
@@ -157,8 +156,8 @@ public class TitleBuilder {
      *
      * <p>The default value for Vanilla is 60 (3 seconds).</p>
      *
-     * @param stay The amount of ticks (1/20 second) to stay, or {@code null}
-     *            to reset
+     * @param stay The amount of ticks (1/20 second) to stay, or {@code null} to
+     *        reset
      * @return This title builder
      * @see Title#getStay()
      */
@@ -183,7 +182,7 @@ public class TitleBuilder {
      * <p>The default value for Vanilla is 20 (1 second).</p>
      *
      * @param fadeOut The amount of ticks (1/20 second) for the fade out effect,
-     *            or {@code null} to reset
+     *        or {@code null} to reset
      * @return This title builder
      * @see Title#getFadeOut()
      */
@@ -223,7 +222,8 @@ public class TitleBuilder {
      */
     public TitleBuilder clear(boolean clear) {
         if (this.clear = clear) {
-            this.title = null; // No need to send title if we clear it after that again
+            this.title = null; // No need to send title if we clear it after
+                               // that again
         }
         return this;
     }
@@ -291,8 +291,7 @@ public class TitleBuilder {
         return new Title(
                 this.title, this.subtitle,
                 this.fadeIn, this.stay, this.fadeOut,
-                this.clear, this.reset
-        );
+                this.clear, this.reset);
     }
 
     @Override

@@ -48,8 +48,8 @@ public abstract class ClickAction<R> extends TextAction<R> {
     public static final class OpenUrl extends ClickAction<URL> {
 
         /**
-         * Constructs a new {@link OpenUrl} instance that will ask the
-         * player to open an URL when it is clicked.
+         * Constructs a new {@link OpenUrl} instance that will ask the player to
+         * open an URL when it is clicked.
          *
          * @param url The url to open
          */
@@ -65,8 +65,8 @@ public abstract class ClickAction<R> extends TextAction<R> {
     public static final class RunCommand extends ClickAction<String> {
 
         /**
-         * Constructs a new {@link RunCommand} instance that will run a
-         * command on the client when it is clicked.
+         * Constructs a new {@link RunCommand} instance that will run a command
+         * on the client when it is clicked.
          *
          * @param command The command to execute
          */
@@ -82,8 +82,8 @@ public abstract class ClickAction<R> extends TextAction<R> {
     public static final class ChangePage extends ClickAction<Integer> {
 
         /**
-         * Constructs a new {@link ChangePage} instance that will change
-         * the page in a book when it is clicked.
+         * Constructs a new {@link ChangePage} instance that will change the
+         * page in a book when it is clicked.
          *
          * @param page The book page to switch to
          */
@@ -99,8 +99,8 @@ public abstract class ClickAction<R> extends TextAction<R> {
     public static final class SuggestCommand extends ClickAction<String> {
 
         /**
-         * Constructs a new {@link SuggestCommand} instance that will
-         * suggest the player a command when it is clicked.
+         * Constructs a new {@link SuggestCommand} instance that will suggest
+         * the player a command when it is clicked.
          *
          * @param command The command to suggest
          */

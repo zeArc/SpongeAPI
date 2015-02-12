@@ -39,7 +39,6 @@ import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyle;
 import org.spongepowered.api.text.format.TextStyles;
-import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 
 import java.util.Collection;
@@ -69,8 +68,8 @@ public abstract class TextBuilder {
     }
 
     /**
-     * Constructs a new {@link TextBuilder} with the properties
-     * of the given {@link Text} as initial values.
+     * Constructs a new {@link TextBuilder} with the properties of the given
+     * {@link Text} as initial values.
      *
      * @param text The text to copy the values from
      */
@@ -142,8 +141,8 @@ public abstract class TextBuilder {
     }
 
     /**
-     * Sets the {@link ClickAction} that will be executed if the text is
-     * clicked in the chat.
+     * Sets the {@link ClickAction} that will be executed if the text is clicked
+     * in the chat.
      *
      * @param clickAction The new click action for the text
      * @return This text builder
@@ -165,8 +164,8 @@ public abstract class TextBuilder {
     }
 
     /**
-     * Sets the {@link HoverAction} that will be executed if the text is
-     * hovered in the chat.
+     * Sets the {@link HoverAction} that will be executed if the text is hovered
+     * in the chat.
      *
      * @param hoverAction The new hover action for the text
      * @return This text builder
@@ -180,7 +179,8 @@ public abstract class TextBuilder {
     /**
      * Returns the current {@link ShiftClickAction} of this builder.
      *
-     * @return The current shift click action or {@link Optional#absent()} if none
+     * @return The current shift click action or {@link Optional#absent()} if
+     *         none
      * @see Text#getShiftClickAction()
      */
     public final Optional<ShiftClickAction<?>> getShiftClickAction() {
@@ -188,8 +188,8 @@ public abstract class TextBuilder {
     }
 
     /**
-     * Sets the {@link ShiftClickAction} that will be executed if the text
-     * is shift-clicked in the chat.
+     * Sets the {@link ShiftClickAction} that will be executed if the text is
+     * shift-clicked in the chat.
      *
      * @param shiftClickAction The new shift click action for the text
      * @return This text builder
@@ -203,8 +203,8 @@ public abstract class TextBuilder {
     /**
      * Returns a view of the current children of this builder.
      *
-     * <p>The returned list is unmodifiable, but not immutable. It will change if new
-     * children get added through this builder.</p>
+     * <p>The returned list is unmodifiable, but not immutable. It will change
+     * if new children get added through this builder.</p>
      *
      * @return An unmodifiable list of the current children
      * @see Text#getChildren()
@@ -214,8 +214,7 @@ public abstract class TextBuilder {
     }
 
     /**
-     * Appends the specified {@link Text}s to the end of this
-     * text.
+     * Appends the specified {@link Text}s to the end of this text.
      *
      * @param children The texts to append
      * @return This text builder
@@ -227,8 +226,7 @@ public abstract class TextBuilder {
     }
 
     /**
-     * Appends the specified {@link Text}s to the end of this
-     * text.
+     * Appends the specified {@link Text}s to the end of this text.
      *
      * @param children The texts to append
      * @return This text builder
@@ -285,8 +283,7 @@ public abstract class TextBuilder {
     }
 
     /**
-     * Builds an immutable instance of the current state of this text
-     * builder.
+     * Builds an immutable instance of the current state of this text builder.
      *
      * @return An immutable {@link Text} with the current properties of this
      *         builder
@@ -329,8 +326,8 @@ public abstract class TextBuilder {
     }
 
     /**
-     * Represents a {@link TextBuilder} creating immutable
-     * {@link Text.Literal} instances.
+     * Represents a {@link TextBuilder} creating immutable {@link Text.Literal}
+     * instances.
      *
      * @see Text.Literal
      */
@@ -355,8 +352,8 @@ public abstract class TextBuilder {
         }
 
         /**
-         * Constructs a new {@link Literal} with the formatting and actions of the specified
-         * {@link Text} and the given content.
+         * Constructs a new {@link Literal} with the formatting and actions of
+         * the specified {@link Text} and the given content.
          *
          * @param text The text to apply the properties from
          * @param content The content for the text builder
@@ -367,8 +364,8 @@ public abstract class TextBuilder {
         }
 
         /**
-         * Constructs a new {@link Literal} with the formatting, actions and content
-         * of the specified {@link Text.Literal}.
+         * Constructs a new {@link Literal} with the formatting, actions and
+         * content of the specified {@link Text.Literal}.
          *
          * @param text The text to apply the properties from
          */
@@ -414,8 +411,7 @@ public abstract class TextBuilder {
                     this.clickAction,
                     this.hoverAction,
                     this.shiftClickAction,
-                    this.content
-            );
+                    this.content);
         }
 
         @Override
@@ -509,7 +505,8 @@ public abstract class TextBuilder {
         protected ImmutableList<Object> arguments;
 
         /**
-         * Constructs a new unformatted {@link Translatable} with the given {@link Translation} and arguments.
+         * Constructs a new unformatted {@link Translatable} with the given
+         * {@link Translation} and arguments.
          *
          * @param translation The translation for the builder
          * @param args The arguments for the translation
@@ -519,7 +516,9 @@ public abstract class TextBuilder {
         }
 
         /**
-         * Constructs a new unformatted {@link TextBuilder.Translatable} from the given {@link org.spongepowered.api.text.translation.Translatable}.
+         * Constructs a new unformatted {@link TextBuilder.Translatable} from
+         * the given {@link org.spongepowered.api.text.translation.Translatable}
+         * .
          *
          * @param translatable The translatable for the builder
          */
@@ -528,8 +527,9 @@ public abstract class TextBuilder {
         }
 
         /**
-         * Constructs a new {@link Translatable} with the formatting and actions of the specified
-         * {@link Text} and the given {@link Translation} and arguments.
+         * Constructs a new {@link Translatable} with the formatting and actions
+         * of the specified {@link Text} and the given {@link Translation} and
+         * arguments.
          *
          * @param text The text to apply the properties from
          * @param translation The translation for the builder
@@ -541,8 +541,9 @@ public abstract class TextBuilder {
         }
 
         /**
-         * Constructs a new {@link Translatable} with the formatting and actions of the specified
-         * {@link Text} and the given {@link org.spongepowered.api.text.translation.Translatable}.
+         * Constructs a new {@link Translatable} with the formatting and actions
+         * of the specified {@link Text} and the given
+         * {@link org.spongepowered.api.text.translation.Translatable}.
          *
          * @param text The text to apply the properties from
          * @param translatable The translatable for the builder
@@ -553,8 +554,8 @@ public abstract class TextBuilder {
         }
 
         /**
-         * Constructs a new {@link Translatable} with the formatting, actions and translation
-         * of the specified {@link Text.Translatable}.
+         * Constructs a new {@link Translatable} with the formatting, actions
+         * and translation of the specified {@link Text.Translatable}.
          *
          * @param text The text to apply the properties from
          */
@@ -617,8 +618,7 @@ public abstract class TextBuilder {
                     this.hoverAction,
                     this.shiftClickAction,
                     this.translation,
-                    this.arguments
-            );
+                    this.arguments);
         }
 
         @Override
@@ -703,8 +703,8 @@ public abstract class TextBuilder {
     }
 
     /**
-     * Represents a {@link TextBuilder} creating immutable
-     * {@link Text.Selector} instances.
+     * Represents a {@link TextBuilder} creating immutable {@link Text.Selector}
+     * instances.
      *
      * @see Text.Selector
      */
@@ -713,7 +713,8 @@ public abstract class TextBuilder {
         protected org.spongepowered.api.text.selector.Selector selector;
 
         /**
-         * Constructs a new unformatted {@link Selector} with the given selector.
+         * Constructs a new unformatted {@link Selector} with the given
+         * selector.
          *
          * @param selector The selector for the builder
          */
@@ -722,8 +723,8 @@ public abstract class TextBuilder {
         }
 
         /**
-         * Constructs a new {@link Selector} with the formatting and actions of the specified
-         * {@link Text} and the given selector.
+         * Constructs a new {@link Selector} with the formatting and actions of
+         * the specified {@link Text} and the given selector.
          *
          * @param text The text to apply the properties from
          * @param selector The selector for the builder
@@ -734,8 +735,8 @@ public abstract class TextBuilder {
         }
 
         /**
-         * Constructs a new {@link Selector} with the formatting, actions and selector
-         * of the specified {@link Text.Selector}.
+         * Constructs a new {@link Selector} with the formatting, actions and
+         * selector of the specified {@link Text.Selector}.
          *
          * @param text The text to apply the properties from
          */
@@ -775,8 +776,7 @@ public abstract class TextBuilder {
                     this.clickAction,
                     this.hoverAction,
                     this.shiftClickAction,
-                    this.selector
-            );
+                    this.selector);
         }
 
         @Override
@@ -859,8 +859,8 @@ public abstract class TextBuilder {
     }
 
     /**
-     * Represents a {@link TextBuilder} creating immutable
-     * {@link Text.Score} instances.
+     * Represents a {@link TextBuilder} creating immutable {@link Text.Score}
+     * instances.
      *
      * @see Text.Score
      */
@@ -880,8 +880,8 @@ public abstract class TextBuilder {
         }
 
         /**
-         * Constructs a new {@link Score} with the formatting and actions of the specified
-         * {@link Text} and the given score.
+         * Constructs a new {@link Score} with the formatting and actions of the
+         * specified {@link Text} and the given score.
          *
          * @param text The text to apply the properties from
          * @param score The score for the text builder
@@ -938,7 +938,8 @@ public abstract class TextBuilder {
         /**
          * Overrides the real score and displays a custom text instead.
          *
-         * @param override The text to override the score with or {@code null} to reset
+         * @param override The text to override the score with or {@code null}
+         *        to reset
          * @return This text builder
          * @see Text.Score#getOverride()
          */
@@ -957,8 +958,7 @@ public abstract class TextBuilder {
                     this.hoverAction,
                     this.shiftClickAction,
                     this.score,
-                    this.override
-            );
+                    this.override);
         }
 
         @Override

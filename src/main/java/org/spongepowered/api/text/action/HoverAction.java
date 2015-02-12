@@ -50,8 +50,8 @@ public abstract class HoverAction<R> extends TextAction<R> {
     public static final class ShowText extends HoverAction<Text> {
 
         /**
-         * Constructs a new {@link ShowText} instance
-         * that will show text when it is hovered.
+         * Constructs a new {@link ShowText} instance that will show text when
+         * it is hovered.
          *
          * @param text The message to show
          */
@@ -66,8 +66,8 @@ public abstract class HoverAction<R> extends TextAction<R> {
     public static final class ShowItem extends HoverAction<ItemStack> {
 
         /**
-         * Constructs a new {@link ShowItem} instance that will show
-         * information about an item when it is hovered.
+         * Constructs a new {@link ShowItem} instance that will show information
+         * about an item when it is hovered.
          *
          * @param item The item to display
          */
@@ -76,7 +76,6 @@ public abstract class HoverAction<R> extends TextAction<R> {
         }
 
     }
-
 
     /**
      * Shows information about an achievement.
@@ -102,8 +101,8 @@ public abstract class HoverAction<R> extends TextAction<R> {
     public static final class ShowEntity extends HoverAction<Entity> {
 
         /**
-         * Constructs a new {@link ShowEntity} that will show information about an
-         * entity when it is hovered.
+         * Constructs a new {@link ShowEntity} that will show information about
+         * an entity when it is hovered.
          *
          * @param entity The entity to display
          */

@@ -39,7 +39,8 @@ public final class Titles {
     }
 
     /**
-     * Returns a {@link Title} that will simply do nothing when it is sent to the client.
+     * Returns a {@link Title} that will simply do nothing when it is sent to
+     * the client.
      *
      * @return An empty title instance
      */
@@ -48,7 +49,8 @@ public final class Titles {
     }
 
     /**
-     * Returns a {@link Title} that will display the given main title on the player's screen.
+     * Returns a {@link Title} that will display the given main title on the
+     * player's screen.
      *
      * @param title The title to display
      * @return The created title
@@ -58,7 +60,8 @@ public final class Titles {
     }
 
     /**
-     * Returns a {@link Title} that will display the given main and subtitle on the player's screen.
+     * Returns a {@link Title} that will display the given main and subtitle on
+     * the player's screen.
      *
      * @param title The title to display
      * @param subtitle The subtitle to display
@@ -69,8 +72,8 @@ public final class Titles {
     }
 
     /**
-     * Returns a {@link Title} that will clear the currently displayed {@link Title} from
-     * the player's screen.
+     * Returns a {@link Title} that will clear the currently displayed
+     * {@link Title} from the player's screen.
      *
      * @return A title configuration that will clear
      */
@@ -79,8 +82,8 @@ public final class Titles {
     }
 
     /**
-     * Returns a {@link Title} that will reset the current title back to default values
-     * on the client.
+     * Returns a {@link Title} that will reset the current title back to default
+     * values on the client.
      *
      * @return A title configuration that will reset
      */

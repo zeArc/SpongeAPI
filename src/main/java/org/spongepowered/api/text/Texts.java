@@ -56,8 +56,8 @@ public final class Texts {
     }
 
     /**
-     * Creates a {@link Text} with the specified plain text. The created
-     * message won't have any formatting or events configured.
+     * Creates a {@link Text} with the specified plain text. The created message
+     * won't have any formatting or events configured.
      *
      * @param content The content of the text
      * @return The created text
@@ -68,7 +68,8 @@ public final class Texts {
     }
 
     /**
-     * Creates a new unformatted {@link Text.Translatable} with the given {@link Translation} and arguments.
+     * Creates a new unformatted {@link Text.Translatable} with the given
+     * {@link Translation} and arguments.
      *
      * @param translation The translation for the text
      * @param args The arguments for the translation
@@ -80,14 +81,16 @@ public final class Texts {
     }
 
     /**
-     * Creates a new unformatted {@link Text.Translatable} from the given {@link Translatable}.
+     * Creates a new unformatted {@link Text.Translatable} from the given
+     * {@link Translatable}.
      *
      * @param translatable The translatable for the text
      * @return The created text
      * @see Text.Translatable
      */
     public static Text.Translatable of(Translatable translatable) {
-        // TODO: Remove explicit array initializer once Statistic API is implemented
+        // TODO: Remove explicit array initializer once Statistic API is
+        // implemented
         return of(checkNotNull(translatable, "translatable").getTranslation(), new Object[0]);
     }
 
@@ -124,7 +127,8 @@ public final class Texts {
      * @param objects The object array
      * @return The built text object
      * @throws IllegalArgumentException If a passed-in argument is not of type
-     *         {@link TextColor}, {@link TextStyle}, {@link String} or {@link Text}
+     *         {@link TextColor}, {@link TextStyle}, {@link String} or
+     *         {@link Text}
      */
     public static Text of(Object... objects) throws IllegalArgumentException {
         TextBuilder builder = builder();
@@ -157,7 +161,8 @@ public final class Texts {
     }
 
     /**
-     * Creates a new unformatted {@link TextBuilder.Literal} with the specified content.
+     * Creates a new unformatted {@link TextBuilder.Literal} with the specified
+     * content.
      *
      * @param content The content of the text
      * @return The created text builder
@@ -169,8 +174,8 @@ public final class Texts {
     }
 
     /**
-     * Creates a new {@link TextBuilder.Literal} with the formatting and actions of the specified
-     * {@link Text} and the given content.
+     * Creates a new {@link TextBuilder.Literal} with the formatting and actions
+     * of the specified {@link Text} and the given content.
      *
      * @param text The text to apply the properties from
      * @param content The content for the text builder
@@ -183,7 +188,8 @@ public final class Texts {
     }
 
     /**
-     * Creates a new unformatted {@link TextBuilder.Translatable} with the given {@link Translation} and arguments.
+     * Creates a new unformatted {@link TextBuilder.Translatable} with the given
+     * {@link Translation} and arguments.
      *
      * @param translation The translation for the builder
      * @param args The arguments for the translation
@@ -196,7 +202,8 @@ public final class Texts {
     }
 
     /**
-     * Creates a new unformatted {@link TextBuilder.Translatable} from the given {@link Translatable}.
+     * Creates a new unformatted {@link TextBuilder.Translatable} from the given
+     * {@link Translatable}.
      *
      * @param translatable The translatable for the builder
      * @return The created text builder
@@ -208,8 +215,9 @@ public final class Texts {
     }
 
     /**
-     * Creates a new {@link TextBuilder.Translatable} with the formatting and actions of the specified
-     * {@link Text} and the given {@link Translation} and arguments.
+     * Creates a new {@link TextBuilder.Translatable} with the formatting and
+     * actions of the specified {@link Text} and the given {@link Translation}
+     * and arguments.
      *
      * @param text The text to apply the properties from
      * @param translation The translation for the builder
@@ -223,8 +231,8 @@ public final class Texts {
     }
 
     /**
-     * Creates a new {@link TextBuilder.Translatable} with the formatting and actions of the specified
-     * {@link Text} and the given {@link Translatable}.
+     * Creates a new {@link TextBuilder.Translatable} with the formatting and
+     * actions of the specified {@link Text} and the given {@link Translatable}.
      *
      * @param text The text to apply the properties from
      * @param translatable The translatable for the builder
@@ -236,9 +244,9 @@ public final class Texts {
         return new TextBuilder.Translatable(text, translatable);
     }
 
-
     /**
-     * Creates a new unformatted {@link TextBuilder.Selector} with the given selector.
+     * Creates a new unformatted {@link TextBuilder.Selector} with the given
+     * selector.
      *
      * @param selector The selector for the builder
      * @return The created text builder
@@ -250,8 +258,8 @@ public final class Texts {
     }
 
     /**
-     * Creates a new {@link TextBuilder.Selector} with the formatting and actions of the specified
-     * {@link Text} and the given selector.
+     * Creates a new {@link TextBuilder.Selector} with the formatting and
+     * actions of the specified {@link Text} and the given selector.
      *
      * @param text The text to apply the properties from
      * @param selector The selector for the builder
@@ -278,8 +286,8 @@ public final class Texts {
     }
 
     /**
-     * Creates a new {@link TextBuilder.Score} with the formatting and actions of the specified
-     * {@link Text} and the given score.
+     * Creates a new {@link TextBuilder.Score} with the formatting and actions
+     * of the specified {@link Text} and the given score.
      *
      * @param text The text to apply the properties from
      * @param score The score for the text builder
@@ -320,8 +328,10 @@ public final class Texts {
      */
     public static Text join(Text separator, Text... texts) {
         switch (texts.length) {
-            case 0: return of();
-            case 1: return texts[0];
+            case 0:
+                return of();
+            case 1:
+                return texts[0];
             default:
                 TextBuilder builder = builder();
                 boolean first = true;
@@ -353,7 +363,8 @@ public final class Texts {
     /**
      * Parses the specified JSON text and returns the parsed result.
      *
-     * <p>Unlike {@link #parse(String)} this will ignore some formatting errors and parse the JSON data more leniently.</p>
+     * <p>Unlike {@link #parse(String)} this will ignore some formatting errors
+     * and parse the JSON data more leniently.</p>
      *
      * @param json The JSON text
      * @return The parsed text
@@ -364,7 +375,8 @@ public final class Texts {
     }
 
     /**
-     * Returns a plain text representation of the {@link Text} without any formattings.
+     * Returns a plain text representation of the {@link Text} without any
+     * formattings.
      *
      * @param text The text to convert
      * @return The text converted to plain text
@@ -472,7 +484,6 @@ public final class Texts {
     public static String replaceCodes(String text, char from, char to) {
         return factory.replaceLegacyCodes(text, from, to);
     }
-
 
     /**
      * Returns a representation of the {@link Text} using the legacy color

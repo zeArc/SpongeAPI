@@ -49,7 +49,8 @@ public interface TextFactory {
     Text parseLenientJson(String json) throws IllegalArgumentException;
 
     /**
-     * Returns a plain text representation of the {@link Text} without any formattings.
+     * Returns a plain text representation of the {@link Text} without any
+     * formattings.
      *
      * @param text The text to convert
      * @return The text converted to plain text

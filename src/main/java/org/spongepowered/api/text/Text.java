@@ -47,14 +47,15 @@ import javax.annotation.Nullable;
 /**
  * Represents an immutable instance of formatted text that can be displayed on
  * the client. Each instance consists of content and a list of children texts
- * appended after the content of this text. The content of the text is
- * available through one of the subclasses.
+ * appended after the content of this text. The content of the text is available
+ * through one of the subclasses.
  *
- * <p>Text is primarily used for sending formatted chat messages to players,
- * but also in other places like books or signs.</p>
+ * <p>Text is primarily used for sending formatted chat messages to players, but
+ * also in other places like books or signs.</p>
  *
- * <p>Text instances can be either directly created through the available constructor or using the {@link TextBuilder} available
- * through one of the {@link Texts#builder()} methods (recommended).</p>
+ * <p>Text instances can be either directly created through the available
+ * constructor or using the {@link TextBuilder} available through one of the
+ * {@link Texts#builder()} methods (recommended).</p>
  *
  * @see Texts#builder()
  * @see TextBuilder
@@ -86,14 +87,16 @@ public abstract class Text {
     }
 
     /**
-     * Constructs a new immutable {@link Text} with the specified formatting and text actions applied.
+     * Constructs a new immutable {@link Text} with the specified formatting and
+     * text actions applied.
      *
      * @param color The color of the text
      * @param style The style of the text
      * @param children The immutable list of children of the text
      * @param clickAction The click action of the text, or {@code null} for none
      * @param hoverAction The hover action of the text, or {@code null} for none
-     * @param shiftClickAction The shift click action of the text, or {@code null} for none
+     * @param shiftClickAction The shift click action of the text, or
+     *        {@code null} for none
      */
     protected Text(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
             @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction) {
@@ -135,8 +138,9 @@ public abstract class Text {
     }
 
     /**
-     * Returns an immutable {@link Iterable} over this text and all of its children.
-     * This is recursive, the children of the children will be also included.
+     * Returns an immutable {@link Iterable} over this text and all of its
+     * children. This is recursive, the children of the children will be also
+     * included.
      *
      * @return An iterable over this text and the children texts
      */
@@ -170,16 +174,17 @@ public abstract class Text {
      * Returns the {@link ShiftClickAction} executed on the client when this
      * {@link Text} gets shift-clicked.
      *
-     * @return The shift-click action of this text, or
-     *         {@link Optional#absent()} if not set
+     * @return The shift-click action of this text, or {@link Optional#absent()}
+     *         if not set
      */
     public final Optional<ShiftClickAction<?>> getShiftClickAction() {
         return this.shiftClickAction;
     }
 
     /**
-     * Returns a new {@link TextBuilder} with the content, formatting and actions of this text.
-     * This can be used to edit an otherwise immutable {@link Text} instance.
+     * Returns a new {@link TextBuilder} with the content, formatting and
+     * actions of this text. This can be used to edit an otherwise immutable
+     * {@link Text} instance.
      *
      * @return A new message builder with the content of this text
      */
@@ -238,15 +243,18 @@ public abstract class Text {
         }
 
         /**
-         * Constructs a new immutable {@link Literal} for the given plain text content
-         * with the specified formatting and text actions applied.
+         * Constructs a new immutable {@link Literal} for the given plain text
+         * content with the specified formatting and text actions applied.
          *
          * @param color The color of the text
          * @param style The style of the text
          * @param children The immutable list of children of the text
-         * @param clickAction The click action of the text, or {@code null} for none
-         * @param hoverAction The hover action of the text, or {@code null} for none
-         * @param shiftClickAction The shift click action of the text, or {@code null} for none
+         * @param clickAction The click action of the text, or {@code null} for
+         *        none
+         * @param hoverAction The hover action of the text, or {@code null} for
+         *        none
+         * @param shiftClickAction The shift click action of the text, or
+         *        {@code null} for none
          * @param content The plain text content of the text
          */
         public Literal(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
@@ -314,15 +322,18 @@ public abstract class Text {
         }
 
         /**
-         * Constructs a new immutable {@link Translatable} for the given translation
-         * with the specified formatting and text actions applied.
+         * Constructs a new immutable {@link Translatable} for the given
+         * translation with the specified formatting and text actions applied.
          *
          * @param color The color of the text
          * @param style The style of the text
          * @param children The immutable list of children of the text
-         * @param clickAction The click action of the text, or {@code null} for none
-         * @param hoverAction The hover action of the text, or {@code null} for none
-         * @param shiftClickAction The shift click action of the text, or {@code null} for none
+         * @param clickAction The click action of the text, or {@code null} for
+         *        none
+         * @param hoverAction The hover action of the text, or {@code null} for
+         *        none
+         * @param shiftClickAction The shift click action of the text, or
+         *        {@code null} for none
          * @param translation The translation of the text
          * @param arguments The arguments for the translation
          */
@@ -389,8 +400,8 @@ public abstract class Text {
     }
 
     /**
-     * Represents a {@link Text} containing a selector that will be replaced
-     * by the names of the matching entities on the client.
+     * Represents a {@link Text} containing a selector that will be replaced by
+     * the names of the matching entities on the client.
      *
      * @see org.spongepowered.api.text.selector.Selector
      * @see TextBuilder.Score
@@ -410,9 +421,12 @@ public abstract class Text {
          * @param color The color of the text
          * @param style The style of the text
          * @param children The immutable list of children of the text
-         * @param clickAction The click action of the text, or {@code null} for none
-         * @param hoverAction The hover action of the text, or {@code null} for none
-         * @param shiftClickAction The shift click action of the text, or {@code null} for none
+         * @param clickAction The click action of the text, or {@code null} for
+         *        none
+         * @param hoverAction The hover action of the text, or {@code null} for
+         *        none
+         * @param shiftClickAction The shift click action of the text, or
+         *        {@code null} for none
          * @param selector The selector of the text
          */
         public Selector(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
@@ -481,17 +495,21 @@ public abstract class Text {
         }
 
         /**
-         * Constructs a new immutable {@link Score} for the given score
-         * with the specified formatting and text actions applied.
+         * Constructs a new immutable {@link Score} for the given score with the
+         * specified formatting and text actions applied.
          *
          * @param color The color of the text
          * @param style The style of the text
          * @param children The immutable list of children of the text
-         * @param clickAction The click action of the text, or {@code null} for none
-         * @param hoverAction The hover action of the text, or {@code null} for none
-         * @param shiftClickAction The shift click action of the text, or {@code null} for none
+         * @param clickAction The click action of the text, or {@code null} for
+         *        none
+         * @param hoverAction The hover action of the text, or {@code null} for
+         *        none
+         * @param shiftClickAction The shift click action of the text, or
+         *        {@code null} for none
          * @param score The score of the text
-         * @param override The text to override the score with, or {@code null} for none
+         * @param override The text to override the score with, or {@code null}
+         *        for none
          */
         public Score(TextColor color, TextStyle style, ImmutableList<Text> children, @Nullable ClickAction<?> clickAction,
                 @Nullable HoverAction<?> hoverAction, @Nullable ShiftClickAction<?> shiftClickAction, Object score, @Nullable String override) {
