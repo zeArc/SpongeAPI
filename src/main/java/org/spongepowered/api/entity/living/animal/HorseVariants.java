@@ -22,42 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.spongepowered.api.entity.living.animal;
 
-package org.spongepowered.api.service.config;
+public final class HorseVariants {
 
-import com.google.inject.BindingAnnotation;
-import com.google.inject.Inject;
-import ninja.leaping.configurate.loader.ConfigurationLoader;
+    public static final HorseVariant HORSE = null;
+    public static final HorseVariant DONKEY = null;
+    public static final HorseVariant MULE = null;
+    public static final HorseVariant UNDEAD_HORSE = null;
+    public static final HorseVariant SKELETON_HORSE = null;
 
-import java.io.File;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-/**
- * Provides an convenient injection for {@link ConfigRoot#getConfig()} or
- * {@link ConfigRoot#getConfigFile()}.
- *
- * <p>Use this annotation on a {@link File} if you want the pathname to
- * the default configuration. Or instead, use this annotation on a
- * {@link ConfigurationLoader} to get an instance of that. Remember that
- * {@link Inject} is also necessary.</p>
- *
- * @see ConfigService For getting configuration without injection
- */
-@BindingAnnotation
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.PARAMETER, ElementType.FIELD})
-public @interface DefaultConfig {
-
-    /**
-     * Whether the the shared root for configuration should be used.
-     *
-     * @see ConfigRoot#getConfigFile() For information on what the shared root is
-     *
-     * @return True to use a shared root configuration
-     */
-    boolean sharedRoot();
-
+    private HorseVariants() {
+    }
 }

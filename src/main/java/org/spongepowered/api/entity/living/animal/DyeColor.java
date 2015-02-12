@@ -22,23 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.entity.living.animal;
 
 import org.spongepowered.api.service.persistence.DataSerializable;
-import org.spongepowered.api.text.translation.Translatable;
 
-/**
- * Represents the variant of a {@link org.spongepowered.api.entity.living.animal.Horse}.
- * <p>The variant of a horse defines the various behaviors the horse can have.
- * Some behaviors limit whether a horse can be chested, wear horse armor, or
- * can be saddled.</p>
- */
-public interface HorseVariant extends DataSerializable, Translatable {
+public interface DyeColor extends DataSerializable {
 
     /**
-     * Gets the name of this variant.
+     * Gets the name of this color.
      *
-     * @return The name of this variant
+     * @return The name of this color
      */
     String getName();
 

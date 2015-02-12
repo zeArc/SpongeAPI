@@ -34,16 +34,16 @@ public interface SkullType extends Translatable {
 
     /**
      * Gets the id of this skull.
-     * 
+     *
      * @return The id
      */
     byte getId();
-    
+
     /**
      * Gets the name of this pitch.
-     * 
+     *
      * @return The name
      */
     String getName();
-    
+
 }

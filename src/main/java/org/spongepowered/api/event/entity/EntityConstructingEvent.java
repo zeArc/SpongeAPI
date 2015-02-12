@@ -22,20 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.api.entity.living.meta;
+package org.spongepowered.api.event.entity;
 
-import org.spongepowered.api.service.persistence.DataSerializable;
+import org.spongepowered.api.entity.Entity;
 
 /**
- * Represents the type of ocelot an ocelot is.
+ * Called during the construction of a {@link Entity}.
  */
-public interface OcelotType extends DataSerializable {
-
-    /**
-     * Gets the name of this ocelot type.
-     *
-     * @return The name of this ocelot type
-     */
-    String getName();
+public interface EntityConstructingEvent extends EntityEvent {
 
 }

@@ -51,7 +51,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
     /**
      * Gets the player's display name. If none set, returns their current
      * username.
-     * 
+     *
      * @return The player's display name
      */
     Text getDisplayName();
@@ -127,7 +127,7 @@ public interface Player extends Human, User, CommandSource, Viewer {
      * @see GameModes
      */
     void setGameMode(GameMode gameMode);
-    
+
     /**
      * Gets the appropriate {@link PlayerConnection} linking this Player
      * to a client.
