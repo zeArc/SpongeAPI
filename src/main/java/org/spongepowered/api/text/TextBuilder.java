@@ -237,6 +237,47 @@ public abstract class TextBuilder {
         return this;
     }
 
+    private static <T> Collection<T> asCollection(Iterable<T> iterable) {
+        return (Collection<T>) iterable;
+    }
+
+    /**
+     * Inserts the specified {@link Text}s at the given position of this builder.
+     *
+     * @param pos The position to insert the texts to
+     * @param children The texts to insert
+     * @return This text builder
+     * @throws IndexOutOfBoundsException If the position is out of bounds
+     * @see Text#getChildren()
+     */
+    public TextBuilder insert(int pos, Text... children) {
+        for (Text child : checkNotNull(children, "children")) {
+            this.children.add(pos++, child);
+        }
+        return this;
+    }
+
+    /**
+     * Inserts the specified {@link Text}s at the given position of this builder.
+     *
+     * @param pos The position to insert the texts to
+     * @param children The texts to insert
+     * @return This text builder
+     * @throws IndexOutOfBoundsException If the position is out of range
+     * @see Text#getChildren()
+     */
+    public TextBuilder insert(int pos, Iterable<? extends Text> children) {
+        checkNotNull(children, "children");
+        if (children instanceof Collection) {
+            this.children.addAll(pos, asCollection(children));
+        } else {
+            for (Text child : children) {
+                this.children.add(pos++, child);
+            }
+        }
+        return this;
+    }
+
     /**
      * Removes the specified {@link Text}s from this builder.
      *
@@ -255,14 +296,13 @@ public abstract class TextBuilder {
      * Removes the specified {@link Text}s from this builder.
      *
      * @param children The texts to remove
-     * @param <T> The text type of the iterable
      * @return This text builder
      * @see Text#getChildren()
      */
-    public <T extends Text> TextBuilder remove(Iterable<T> children) {
+    public TextBuilder remove(Iterable<? extends Text> children) {
         checkNotNull(children, "children");
         if (children instanceof Collection) {
-            this.children.removeAll((Collection<T>) children);
+            this.children.removeAll(asCollection(children));
         } else {
             for (Text child : children) {
                 this.children.remove(child);
@@ -477,12 +517,22 @@ public abstract class TextBuilder {
         }
 
         @Override
+        public Literal insert(int pos, Text... children) {
+            return (Literal) super.insert(pos, children);
+        }
+
+        @Override
+        public Literal insert(int pos, Iterable<? extends Text> children) {
+            return (Literal) super.insert(pos, children);
+        }
+
+        @Override
         public Literal remove(Text... children) {
             return (Literal) super.remove(children);
         }
 
         @Override
-        public <T extends Text> Literal remove(Iterable<T> children) {
+        public Literal remove(Iterable<? extends Text> children) {
             return (Literal) super.remove(children);
         }
 
@@ -686,12 +736,22 @@ public abstract class TextBuilder {
         }
 
         @Override
+        public Translatable insert(int pos, Text... children) {
+            return (Translatable) super.insert(pos, children);
+        }
+
+        @Override
+        public Translatable insert(int pos, Iterable<? extends Text> children) {
+            return (Translatable) super.insert(pos, children);
+        }
+
+        @Override
         public Translatable remove(Text... children) {
             return (Translatable) super.remove(children);
         }
 
         @Override
-        public <T extends Text> Translatable remove(Iterable<T> children) {
+        public Translatable remove(Iterable<? extends Text> children) {
             return (Translatable) super.remove(children);
         }
 
@@ -842,12 +902,22 @@ public abstract class TextBuilder {
         }
 
         @Override
+        public Selector insert(int pos, Text... children) {
+            return (Selector) super.insert(pos, children);
+        }
+
+        @Override
+        public Selector insert(int pos, Iterable<? extends Text> children) {
+            return (Selector) super.insert(pos, children);
+        }
+
+        @Override
         public Selector remove(Text... children) {
             return (Selector) super.remove(children);
         }
 
         @Override
-        public <T extends Text> Selector remove(Iterable<T> children) {
+        public Selector remove(Iterable<? extends Text> children) {
             return (Selector) super.remove(children);
         }
 
@@ -1025,12 +1095,22 @@ public abstract class TextBuilder {
         }
 
         @Override
+        public Score insert(int pos, Text... children) {
+            return (Score) super.insert(pos, children);
+        }
+
+        @Override
+        public Score insert(int pos, Iterable<? extends Text> children) {
+            return (Score) super.insert(pos, children);
+        }
+
+        @Override
         public Score remove(Text... children) {
             return (Score) super.remove(children);
         }
 
         @Override
-        public <T extends Text> Score remove(Iterable<T> children) {
+        public Score remove(Iterable<? extends Text> children) {
             return (Score) super.remove(children);
         }
 
