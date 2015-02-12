@@ -24,114 +24,290 @@
  */
 package org.spongepowered.api.text;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.text.format.TextColor;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.format.TextStyle;
 import org.spongepowered.api.text.format.TextStyles;
+import org.spongepowered.api.text.selector.Selector;
 import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 
 /**
- * Utility class to work with and create {@link Text}.
+ * Utility class to work with and create {@link Text}s.
  */
 public final class Texts {
 
     private static final TextFactory factory = null;
+    static final Text.Literal EMPTY = new Text.Literal();
 
     private Texts() {
     }
 
     /**
-     * Creates a {@link TextBuilder} with empty text.
+     * Returns an empty, unformatted {@link Text} instance.
      *
-     * @return A new message builder with empty text
+     * @return An empty text
      */
-    public static TextBuilder builder() {
-        return factory.createEmptyBuilder();
-    }
-
-    /**
-     * Creates a {@link TextBuilder.Literal} with the specified text.
-     *
-     * @param text The text for the message
-     * @return A new message builder with the specified text
-     * @see Text.Literal
-     */
-    public static TextBuilder.Literal builder(String text) {
-        return factory.createTextBuilder(text);
-    }
-
-    /**
-     * Creates a {@link TextBuilder.Translatable} with the specified
-     * translation and arguments.
-     *
-     * @param translation The translation to use for the message
-     * @param args The arguments for the translation, can be empty
-     * @return A new message builder with the specified translation and
-     *         arguments
-     * @see Text.Translatable
-     */
-    public static TextBuilder.Translatable builder(Translation translation, Object... args) {
-        return factory.createTranslatableBuilder(translation, args);
-    }
-
-    /**
-     * Creates a {@link TextBuilder.Translatable} with the specified
-     * {@link Translatable} object and arguments.
-     *
-     * @param translatable The translatable object to insert to the message
-     * @param args The arguments for the translation, can be empty
-     * @return A new message builder with the translation of the translatable
-     *         object
-     * @see Text.Translatable
-     */
-    public static TextBuilder.Translatable builder(Translatable translatable, Object... args) {
-        return builder(translatable.getTranslation(), args);
-    }
-
-    // TODO: Change to builder() when possible?
-
-    /**
-     * Creates a new {@link TextBuilder.Selector} with the specified
-     * selector.
-     *
-     * @param selector The selector for the message
-     * @return A new message builder with the specified selector
-     * @see Text.Selector
-     */
-    public static TextBuilder.Selector selector(String selector) {
-        return factory.createSelectorBuilder(selector);
-    }
-
-    /**
-     * Creates a new {@link TextBuilder.Score} with the specified score.
-     *
-     * @param score The score for the message
-     * @return A new message builder with the specified score
-     * @see Text.Score
-     */
-    public static TextBuilder.Score score(Object score) {
-        return factory.createScoreBuilder(score);
+    public static Text of() {
+        return EMPTY;
     }
 
     /**
      * Creates a {@link Text} with the specified plain text. The created
      * message won't have any formatting or events configured.
      *
-     * @param content The content of the Message
-     * @return The created {@link Text}
+     * @param content The content of the text
+     * @return The created text
+     * @see Text.Literal
      */
     public static Text.Literal of(String content) {
-        return factory.createPlain(content);
+        return new Text.Literal(content);
+    }
+
+    /**
+     * Creates a new unformatted {@link Text.Translatable} with the given {@link Translation} and arguments.
+     *
+     * @param translation The translation for the text
+     * @param args The arguments for the translation
+     * @return The created text
+     * @see Text.Translatable
+     */
+    public static Text.Translatable of(Translation translation, Object... args) {
+        return new Text.Translatable(translation, ImmutableList.copyOf(checkNotNull(args, "args")));
+    }
+
+    /**
+     * Creates a new unformatted {@link Text.Translatable} from the given {@link Translatable}.
+     *
+     * @param translatable The translatable for the text
+     * @return The created text
+     * @see Text.Translatable
+     */
+    public static Text.Translatable of(Translatable translatable) {
+        // TODO: Remove explicit array initializer once Statistic API is implemented
+        return of(checkNotNull(translatable, "translatable").getTranslation(), new Object[0]);
+    }
+
+    /**
+     * Creates a new unformatted {@link Text.Selector} with the given selector.
+     *
+     * @param selector The selector for the text
+     * @return The created text
+     * @see Text.Selector
+     */
+    public static Text.Selector of(Selector selector) {
+        return new Text.Selector(selector);
+    }
+
+    /**
+     * Creates a new unformatted {@link Text.Score} with the given score.
+     *
+     * @param score The score for the text
+     * @return The created text
+     * @see Text.Score
+     */
+    // TODO: Replace with Statistic API
+    public static Text.Score of(Object score) {
+        return new Text.Score(score);
+    }
+
+    /**
+     * Builds a {@link Text} from a given array of objects.
+     *
+     * <p>For instance, you can use this like
+     * <code>Texts.of(TextColors.DARK_AQUA, "Hi", TextColors.AQUA, "Bye")</code>
+     * </p>
+     *
+     * @param objects The object array
+     * @return The built text object
+     * @throws IllegalArgumentException If a passed-in argument is not of type
+     *         {@link TextColor}, {@link TextStyle}, {@link String} or {@link Text}
+     */
+    public static Text of(Object... objects) throws IllegalArgumentException {
+        TextBuilder builder = builder();
+        TextColor color = TextColors.NONE;
+        TextStyle style = TextStyles.NONE;
+        for (Object obj : objects) {
+            if (obj instanceof TextColor) {
+                color = (TextColor) obj;
+            } else if (obj instanceof TextStyle) {
+                style = obj.equals(TextStyles.RESET) ? TextStyles.NONE : style.and((TextStyle) obj);
+            } else if (obj instanceof Text) {
+                builder.append((Text) obj);
+            } else if (obj instanceof String) {
+                builder.append(builder((String) obj).color(color).style(style).build());
+            } else {
+                throw new IllegalArgumentException("Unexpected type for object " + obj);
+            }
+        }
+
+        return builder.build();
+    }
+
+    /**
+     * Creates a {@link TextBuilder} with empty text.
+     *
+     * @return A new text builder with empty text
+     */
+    public static TextBuilder builder() {
+        return new TextBuilder.Literal();
+    }
+
+    /**
+     * Creates a new unformatted {@link TextBuilder.Literal} with the specified content.
+     *
+     * @param content The content of the text
+     * @return The created text builder
+     * @see Text.Literal
+     * @see TextBuilder.Literal
+     */
+    public static TextBuilder.Literal builder(String content) {
+        return new TextBuilder.Literal(content);
+    }
+
+    /**
+     * Creates a new {@link TextBuilder.Literal} with the formatting and actions of the specified
+     * {@link Text} and the given content.
+     *
+     * @param text The text to apply the properties from
+     * @param content The content for the text builder
+     * @return The created text builder
+     * @see Text.Literal
+     * @see TextBuilder.Literal
+     */
+    public static TextBuilder.Literal builder(Text text, String content) {
+        return new TextBuilder.Literal(text, content);
+    }
+
+    /**
+     * Creates a new unformatted {@link TextBuilder.Translatable} with the given {@link Translation} and arguments.
+     *
+     * @param translation The translation for the builder
+     * @param args The arguments for the translation
+     * @return The created text builder
+     * @see Text.Translatable
+     * @see TextBuilder.Translatable
+     */
+    public static TextBuilder.Translatable builder(Translation translation, Object... args) {
+        return new TextBuilder.Translatable(translation, args);
+    }
+
+    /**
+     * Creates a new unformatted {@link TextBuilder.Translatable} from the given {@link Translatable}.
+     *
+     * @param translatable The translatable for the builder
+     * @return The created text builder
+     * @see Text.Translatable
+     * @see TextBuilder.Translatable
+     */
+    public static TextBuilder.Translatable builder(Translatable translatable) {
+        return new TextBuilder.Translatable(translatable);
+    }
+
+    /**
+     * Creates a new {@link TextBuilder.Translatable} with the formatting and actions of the specified
+     * {@link Text} and the given {@link Translation} and arguments.
+     *
+     * @param text The text to apply the properties from
+     * @param translation The translation for the builder
+     * @param args The arguments for the translation
+     * @return The created text builder
+     * @see Text.Translatable
+     * @see TextBuilder.Translatable
+     */
+    public static TextBuilder.Translatable builder(Text text, Translation translation, Object... args) {
+        return new TextBuilder.Translatable(text, translation, args);
+    }
+
+    /**
+     * Creates a new {@link TextBuilder.Translatable} with the formatting and actions of the specified
+     * {@link Text} and the given {@link Translatable}.
+     *
+     * @param text The text to apply the properties from
+     * @param translatable The translatable for the builder
+     * @return The created text builder
+     * @see Text.Translatable
+     * @see TextBuilder.Translatable
+     */
+    public static TextBuilder.Translatable builder(Text text, Translatable translatable) {
+        return new TextBuilder.Translatable(text, translatable);
+    }
+
+
+    /**
+     * Creates a new unformatted {@link TextBuilder.Selector} with the given selector.
+     *
+     * @param selector The selector for the builder
+     * @return The created text builder
+     * @see Text.Selector
+     * @see TextBuilder.Selector
+     */
+    public static TextBuilder.Selector builder(Selector selector) {
+        return new TextBuilder.Selector(selector);
+    }
+
+    /**
+     * Creates a new {@link TextBuilder.Selector} with the formatting and actions of the specified
+     * {@link Text} and the given selector.
+     *
+     * @param text The text to apply the properties from
+     * @param selector The selector for the builder
+     * @return The created text builder
+     * @see Text.Selector
+     * @see TextBuilder.Selector
+     */
+    public static TextBuilder.Selector builder(Text text, Selector selector) {
+        return new TextBuilder.Selector(text, selector);
+    }
+
+    // TODO: Replace with Statistic API
+
+    /**
+     * Creates a new unformatted {@link TextBuilder.Score} with the given score.
+     *
+     * @param score The score for the text builder
+     * @return The created text builder
+     * @see Text.Score
+     * @see TextBuilder.Score
+     */
+    public static TextBuilder.Score builder(Object score) {
+        return new TextBuilder.Score(score);
+    }
+
+    /**
+     * Creates a new {@link TextBuilder.Score} with the formatting and actions of the specified
+     * {@link Text} and the given score.
+     *
+     * @param text The text to apply the properties from
+     * @param score The score for the text builder
+     * @return The created text builder
+     * @see Text.Score
+     * @see TextBuilder.Score
+     */
+    public static TextBuilder.Score builder(Text text, Object score) {
+        return new TextBuilder.Score(text, score);
     }
 
     /**
      * Joins a sequence of text objects together.
      *
-     * @param texts The text to join
+     * @param texts The texts to join
      * @return A text object that joins the given text objects
      */
     public static Text join(Text... texts) {
+        return builder().append(texts).build();
+    }
+
+    /**
+     * Joins a sequence of text objects together.
+     *
+     * @param texts The texts to join
+     * @return A text object that joins the given text objects
+     */
+    public static Text join(Iterable<? extends Text> texts) {
         return builder().append(texts).build();
     }
 
@@ -143,49 +319,24 @@ public final class Texts {
      * @return A text object that joins the given text objects
      */
     public static Text join(Text separator, Text... texts) {
-        if (texts.length < 2) {
-            return join(texts);
-        } else {
-            TextBuilder builder = builder();
-            for (int i = 0; i < texts.length - 1; i++) {
-                builder.append(texts[i]);
-                builder.append(separator);
-            }
-            builder.append(texts[texts.length - 1]);
-            return builder.build();
-        }
-    }
+        switch (texts.length) {
+            case 0: return of();
+            case 1: return texts[0];
+            default:
+                TextBuilder builder = builder();
+                boolean first = true;
+                for (Text text : texts) {
+                    if (!first) {
+                        builder.append(separator);
+                    } else {
+                        first = false;
+                    }
 
-    /**
-     * Builds a Text object from a given array of objects.
-     *
-     * <p>For instance, you can use this like
-     * <code>Txt.of(TextColors.DARK_AQUA, "Hi", TextColors.AQUA, "Bye")</code>
-     * </p>
-     *
-     * @param objects The object array
-     * @throws IllegalArgumentException If a passed-in argument is not of type
-     *         TextColor, TextStyle, String or Text
-     * @return The built text object
-     */
-    public static Text of(Object... objects) throws IllegalArgumentException {
-        TextBuilder builder = builder();
-        TextColor color = TextColors.NONE;
-        TextStyle style = TextStyles.NONE;
-        for (Object obj: objects) {
-            if (obj instanceof TextColor) {
-                color = (TextColor) obj;
-            } else if (obj instanceof TextStyle) {
-                style = obj.equals(TextStyles.RESET) ? TextStyles.NONE : style.and((TextStyle) obj);
-            } else if (obj instanceof String) {
-                builder.append(builder((String) obj).color(color).build());
-            } else if (obj instanceof Text) {
-                builder.append((Text) obj);
-            } else {
-                throw new IllegalArgumentException("Unexpected type for object " + obj);
-            }
+                    builder.append(text);
+                }
+
+                return builder.build();
         }
-        return builder.build();
     }
 
     /**
@@ -196,7 +347,7 @@ public final class Texts {
      * @throws IllegalArgumentException If the JSON is invalid
      */
     public static Text parse(String json) throws IllegalArgumentException {
-        throw new UnsupportedOperationException(); // TODO
+        return factory.parseJson(json);
     }
 
     /**
@@ -208,8 +359,28 @@ public final class Texts {
      * @return The parsed text
      * @throws IllegalArgumentException If the JSON couldn't be parsed
      */
-    public static Text parseLenient(String json) {
-        throw new UnsupportedOperationException(); // TODO
+    public static Text parseLenient(String json) throws IllegalArgumentException {
+        return factory.parseLenientJson(json);
+    }
+
+    /**
+     * Returns a plain text representation of the {@link Text} without any formattings.
+     *
+     * @param text The text to convert
+     * @return The text converted to plain text
+     */
+    public static String toPlain(Text text) {
+        return factory.toPlain(text);
+    }
+
+    /**
+     * Returns a JSON representation of the {@link Text} as used in commands.
+     *
+     * @param text The text to convert
+     * @return The text converted to JSON
+     */
+    public static String toJson(Text text) {
+        return factory.toJson(text);
     }
 
     /**
@@ -301,5 +472,33 @@ public final class Texts {
     public static String replaceCodes(String text, char from, char to) {
         return factory.replaceLegacyCodes(text, from, to);
     }
-    
+
+
+    /**
+     * Returns a representation of the {@link Text} using the legacy color
+     * codes.
+     *
+     * @param text The text to convert
+     * @return The text converted to the old color codes
+     * @deprecated Legacy formatting codes are being phased out of Minecraft
+     */
+    @Deprecated
+    public static String toLegacy(Text text) {
+        return toLegacy(text, getLegacyChar());
+    }
+
+    /**
+     * Returns a representation of the {@link Text} using the legacy color
+     * codes.
+     *
+     * @param text The text to convert
+     * @param code The legacy char to use for the message
+     * @return The text converted to the old color codes
+     * @deprecated Legacy formatting codes are being phased out of Minecraft
+     */
+    @Deprecated
+    public static String toLegacy(Text text, char code) {
+        return factory.toLegacy(text, code);
+    }
+
 }

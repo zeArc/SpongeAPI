@@ -103,6 +103,15 @@ public class TextStyle {
     }
 
     /**
+     * Returns whether this text style has no properties.
+     *
+     * @return {@code true} if this style is empty
+     */
+    public boolean isEmpty() {
+        return this.components.isEmpty();
+    }
+
+    /**
      * Returns whether the given {@link TextStyle} is contained in this
      * {@link TextStyle}.
      *
@@ -153,7 +162,7 @@ public class TextStyle {
      * @see Component
      */
     public Component get(Base style) {
-        @Nullable Component result = components.get(style);
+        @Nullable Component result = this.components.get(style);
         return result != null ? result : Component.UNAPPLIED;
     }
 
@@ -166,7 +175,7 @@ public class TextStyle {
     public TextStyle negate() {
         // Do a negation of each component
         ImmutableMap.Builder<Base, Component> newComponents = ImmutableMap.builder();
-        for (Map.Entry<Base, Component> entry: components.entrySet()) {
+        for (Map.Entry<Base, Component> entry : this.components.entrySet()) {
             newComponents.put(entry.getKey(), entry.getValue().negate());
         }
         return new TextStyle(newComponents.build());
@@ -184,12 +193,14 @@ public class TextStyle {
 
     private TextStyle and(TextStyle[] styles, boolean negate) {
         // We can't use a builder here because we have to remove values
-        Map<Base, Component> newComponents = Maps.newHashMap(components);
+        Map<Base, Component> newComponents = Maps.newHashMap(this.components);
         for (TextStyle style : styles) {
             for (Map.Entry<Base, Component> entry : style.components.entrySet()) {
                 Base base = entry.getKey();
                 Component component = get(base).add(entry.getValue());
-                if (negate) component = component.negate();
+                if (negate) {
+                    component = component.negate();
+                }
                 if (component == Component.UNAPPLIED) {
                     newComponents.remove(base);
                 } else {
@@ -252,13 +263,13 @@ public class TextStyle {
 
         @Override
         public String getName() {
-            return name;
+            return this.name;
         }
 
         @Override
         @Deprecated
         public char getCode() {
-            return code;
+            return this.code;
         }
 
     }
@@ -313,7 +324,9 @@ public class TextStyle {
          * @return A new TextStyleComponent
          */
         public Component add(Component that) {
-            if (this == UNAPPLIED) return that;
+            if (this == UNAPPLIED) {
+                return that;
+            }
             return this == that ? this : UNAPPLIED;
         }
 
@@ -323,7 +336,9 @@ public class TextStyle {
          * @return The negated TextStyleComponent
          */
         public Component negate() {
-            if (this == UNAPPLIED) return this;
+            if (this == UNAPPLIED) {
+                return this;
+            }
             return this == APPLIED ? NEGATED : APPLIED;
         }
 
@@ -334,7 +349,7 @@ public class TextStyle {
          * @return This component as a boolean or {@link Optional#absent()}
          */
         public Optional<Boolean> toBoolean() {
-            return boolValue;
+            return this.boolValue;
         }
 
     }
