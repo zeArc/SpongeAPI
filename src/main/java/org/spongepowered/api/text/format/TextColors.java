@@ -34,6 +34,11 @@ public final class TextColors {
     private TextColors() {
     }
 
+    /**
+     * Represents a base color that is used as default if no color is specified.
+     * This will result in either the default color of the receiver or inherit
+     * it from a parent {@link Text}.
+     */
     public static final TextColor NONE = new TextColor() {
 
         private final Color color = new Color(0, 0, 0, 0);
@@ -41,11 +46,6 @@ public final class TextColors {
         @Override
         public Color getColor() {
             return this.color;
-        }
-
-        @Override
-        public boolean isReset() {
-            return false;
         }
 
     };
