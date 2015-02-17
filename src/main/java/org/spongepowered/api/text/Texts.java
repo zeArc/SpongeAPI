@@ -91,10 +91,8 @@ public final class Texts {
      * @return The created text
      * @see Text.Translatable
      */
-    public static Text.Translatable of(Translatable translatable) {
-        // TODO: Remove explicit array initializer once Statistic API is
-        // implemented
-        return of(checkNotNull(translatable, "translatable").getTranslation(), new Object[0]);
+    public static Text.Translatable of(Translatable translatable, Object... args) {
+        return of(checkNotNull(translatable, "translatable").getTranslation(), args);
     }
 
     /**
@@ -213,8 +211,8 @@ public final class Texts {
      * @see Text.Translatable
      * @see TextBuilder.Translatable
      */
-    public static TextBuilder.Translatable builder(Translatable translatable) {
-        return new TextBuilder.Translatable(translatable);
+    public static TextBuilder.Translatable builder(Translatable translatable, Object... args) {
+        return new TextBuilder.Translatable(translatable, args);
     }
 
     /**
@@ -243,8 +241,8 @@ public final class Texts {
      * @see Text.Translatable
      * @see TextBuilder.Translatable
      */
-    public static TextBuilder.Translatable builder(Text text, Translatable translatable) {
-        return new TextBuilder.Translatable(text, translatable);
+    public static TextBuilder.Translatable builder(Text text, Translatable translatable, Object... args) {
+        return new TextBuilder.Translatable(text, translatable, args);
     }
 
     /**

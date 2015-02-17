@@ -572,8 +572,8 @@ public abstract class TextBuilder {
          *
          * @param translatable The translatable for the builder
          */
-        public Translatable(org.spongepowered.api.text.translation.Translatable translatable) {
-            translation(translatable);
+        public Translatable(org.spongepowered.api.text.translation.Translatable translatable, Object... args) {
+            translation(translatable, args);
         }
 
         /**
@@ -598,9 +598,9 @@ public abstract class TextBuilder {
          * @param text The text to apply the properties from
          * @param translatable The translatable for the builder
          */
-        public Translatable(Text text, org.spongepowered.api.text.translation.Translatable translatable) {
+        public Translatable(Text text, org.spongepowered.api.text.translation.Translatable translatable, Object... args) {
             super(text);
-            translation(translatable);
+            translation(translatable, args);
         }
 
         /**
@@ -652,10 +652,11 @@ public abstract class TextBuilder {
          * Sets the translation of the text.
          *
          * @param translatable The translatable object to use for this builder
+         * @param args The arguments for the translation
          * @return This text builder
          */
-        public Translatable translation(org.spongepowered.api.text.translation.Translatable translatable) {
-            return translation(checkNotNull(translatable, "translatable").getTranslation());
+        public Translatable translation(org.spongepowered.api.text.translation.Translatable translatable, Object... args) {
+            return translation(checkNotNull(translatable, "translatable").getTranslation(), args);
         }
 
         @Override
