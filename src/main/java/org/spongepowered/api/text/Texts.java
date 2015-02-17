@@ -36,7 +36,7 @@ import org.spongepowered.api.text.translation.Translatable;
 import org.spongepowered.api.text.translation.Translation;
 
 /**
- * Utility class to work with and create {@link Text}s.
+ * Utility class to work with and create {@link Text}.
  */
 public final class Texts {
 
@@ -64,6 +64,9 @@ public final class Texts {
      * @see Text.Literal
      */
     public static Text.Literal of(String content) {
+        if (checkNotNull(content, "content").isEmpty()) {
+            return EMPTY;
+        }
         return new Text.Literal(content);
     }
 
@@ -356,27 +359,27 @@ public final class Texts {
      * @return The parsed text
      * @throws IllegalArgumentException If the JSON is invalid
      */
-    public static Text parse(String json) throws IllegalArgumentException {
+    public static Text parseJson(String json) throws IllegalArgumentException {
         return factory.parseJson(json);
     }
 
     /**
      * Parses the specified JSON text and returns the parsed result.
      *
-     * <p>Unlike {@link #parse(String)} this will ignore some formatting errors
+     * <p>Unlike {@link #parseJson(String)} this will ignore some formatting errors
      * and parse the JSON data more leniently.</p>
      *
      * @param json The JSON text
      * @return The parsed text
      * @throws IllegalArgumentException If the JSON couldn't be parsed
      */
-    public static Text parseLenient(String json) throws IllegalArgumentException {
-        return factory.parseLenientJson(json);
+    public static Text parseJsonLenient(String json) throws IllegalArgumentException {
+        return factory.parseJsonLenient(json);
     }
 
     /**
      * Returns a plain text representation of the {@link Text} without any
-     * formattings.
+     * formatting.
      *
      * @param text The text to convert
      * @return The text converted to plain text
@@ -403,7 +406,7 @@ public final class Texts {
      */
     @Deprecated
     public static char getLegacyChar() {
-        return factory.getColorChar();
+        return factory.getLegacyChar();
     }
 
     /**

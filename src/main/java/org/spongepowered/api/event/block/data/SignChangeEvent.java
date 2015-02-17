@@ -40,14 +40,14 @@ public interface SignChangeEvent extends SignEvent, Cancellable {
      *
      * @return The previous messages
      */
-    Text[] getPreviousMessages();
+    Text[] getPreviousLines();
 
     /**
      * Gets the changed messages.
      *
      * @return The new messages
      */
-    Text[] getNewMessages();
+    Text[] getNewLines();
 
     /**
      * Sets the changed messages.

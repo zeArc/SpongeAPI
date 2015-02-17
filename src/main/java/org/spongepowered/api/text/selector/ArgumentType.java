@@ -92,7 +92,7 @@ public interface ArgumentType<T> {
     }
 
     /**
-     * Represents the holder of two {@link ArgumentType} with a minimal and
+     * Represents the holder of two {@link ArgumentType}s with a minimal and
      * maximal argument type.
      *
      * @param <T> The type of the argument type

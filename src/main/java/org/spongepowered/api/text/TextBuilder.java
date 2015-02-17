@@ -73,7 +73,7 @@ public abstract class TextBuilder {
      *
      * @param text The text to copy the values from
      */
-    protected TextBuilder(Text text) {
+    public TextBuilder(Text text) {
         checkNotNull(text, "text");
         this.color = text.color;
         this.style = text.style;
@@ -214,7 +214,7 @@ public abstract class TextBuilder {
     }
 
     /**
-     * Appends the specified {@link Text}s to the end of this text.
+     * Appends the specified {@link Text} to the end of this text.
      *
      * @param children The texts to append
      * @return This text builder
@@ -226,7 +226,7 @@ public abstract class TextBuilder {
     }
 
     /**
-     * Appends the specified {@link Text}s to the end of this text.
+     * Appends the specified {@link Text} to the end of this text.
      *
      * @param children The texts to append
      * @return This text builder
@@ -242,7 +242,7 @@ public abstract class TextBuilder {
     }
 
     /**
-     * Inserts the specified {@link Text}s at the given position of this builder.
+     * Inserts the specified {@link Text} at the given position of this builder.
      *
      * @param pos The position to insert the texts to
      * @param children The texts to insert
@@ -258,7 +258,7 @@ public abstract class TextBuilder {
     }
 
     /**
-     * Inserts the specified {@link Text}s at the given position of this builder.
+     * Inserts the specified {@link Text} at the given position of this builder.
      *
      * @param pos The position to insert the texts to
      * @param children The texts to insert
@@ -279,7 +279,7 @@ public abstract class TextBuilder {
     }
 
     /**
-     * Removes the specified {@link Text}s from this builder.
+     * Removes the specified {@link Text} from this builder.
      *
      * @param children The texts to remove
      * @return This text builder
@@ -293,7 +293,7 @@ public abstract class TextBuilder {
     }
 
     /**
-     * Removes the specified {@link Text}s from this builder.
+     * Removes the specified {@link Text} from this builder.
      *
      * @param children The texts to remove
      * @return This text builder
@@ -409,7 +409,7 @@ public abstract class TextBuilder {
          *
          * @param text The text to apply the properties from
          */
-        protected Literal(Text.Literal text) {
+        public Literal(Text.Literal text) {
             super(text);
             this.content = text.content;
         }
@@ -609,7 +609,7 @@ public abstract class TextBuilder {
          *
          * @param text The text to apply the properties from
          */
-        protected Translatable(Text.Translatable text) {
+        public Translatable(Text.Translatable text) {
             super(text);
             this.translation = text.translation;
             this.arguments = text.arguments;
@@ -800,7 +800,7 @@ public abstract class TextBuilder {
          *
          * @param text The text to apply the properties from
          */
-        protected Selector(Text.Selector text) {
+        public Selector(Text.Selector text) {
             super(text);
             this.selector = text.selector;
         }
@@ -967,7 +967,7 @@ public abstract class TextBuilder {
          *
          * @param text The text to apply the properties from
          */
-        protected Score(Text.Score text) {
+        public Score(Text.Score text) {
             super(text);
             this.score = text.score;
             this.override = text.override.orNull();

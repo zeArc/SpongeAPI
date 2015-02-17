@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  *
  * <p>Text instances can be either directly created through the available
  * constructor or using the {@link TextBuilder} available through one of the
- * {@link Texts#builder()} methods (recommended).</p>
+ * {@link Texts#builder()} methods, which is the recommended way.</p>
  *
  * @see Texts#builder()
  * @see TextBuilder
@@ -73,6 +73,10 @@ public abstract class Text {
     protected final Optional<HoverAction<?>> hoverAction;
     protected final Optional<ShiftClickAction<?>> shiftClickAction;
 
+    /**
+     * An {@link Iterable} providing an {@link Iterator} over this {@link Text}
+     * as well as all children text and their children.
+     */
     protected final Iterable<Text> childrenIterable = new Iterable<Text>() {
 
         @Override

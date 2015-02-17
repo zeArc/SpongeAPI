@@ -31,9 +31,9 @@ import org.spongepowered.api.text.Text;
  */
 public final class Titles {
 
-    private static final Title EMPTY = new Title();
-    private static final Title CLEAR = new Title(null, null, null, null, null, true, false);
-    private static final Title RESET = new Title(null, null, null, null, null, false, true);
+    public static final Title EMPTY = new Title();
+    public static final Title CLEAR = new Title(null, null, null, null, null, true, false);
+    public static final Title RESET = new Title(null, null, null, null, null, false, true);
 
     private Titles() {
     }

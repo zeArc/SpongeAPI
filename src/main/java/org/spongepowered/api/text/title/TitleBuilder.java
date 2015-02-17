@@ -58,7 +58,7 @@ public class TitleBuilder {
      *
      * @param title The title to copy the values from
      */
-    protected TitleBuilder(Title title) {
+    public TitleBuilder(Title title) {
         this.title = title.title.orNull();
         this.subtitle = title.subtitle.orNull();
         this.fadeIn = title.fadeIn.orNull();
@@ -275,7 +275,7 @@ public class TitleBuilder {
      * @return An immutable {@link Title} with the currently configured settings
      */
     public Title build() {
-        // Special case if the builder is empty
+        // If the title has no other properties and is either empty, just clears or just resets we can return a special instance
         if (this.title == null && this.subtitle == null && this.fadeIn == null && this.stay == null && this.fadeOut == null) {
             if (this.clear) {
                 if (!this.reset) {

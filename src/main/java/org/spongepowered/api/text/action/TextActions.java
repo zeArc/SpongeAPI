@@ -35,8 +35,6 @@ import java.net.URL;
  */
 public final class TextActions {
 
-    // TODO: Keep this class for static importing?
-
     private TextActions() {
     }
 

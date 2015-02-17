@@ -46,7 +46,7 @@ public interface TextFactory {
      * @return The parsed text
      * @throws IllegalArgumentException If the JSON couldn't be parsed
      */
-    Text parseLenientJson(String json) throws IllegalArgumentException;
+    Text parseJsonLenient(String json) throws IllegalArgumentException;
 
     /**
      * Returns a plain text representation of the {@link Text} without any
@@ -70,7 +70,7 @@ public interface TextFactory {
      *
      * @return The legacy formatting character
      */
-    char getColorChar();
+    char getLegacyChar();
 
     /**
      * Creates a Message from a legacy string, given a color character.
