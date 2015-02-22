@@ -23,18 +23,11 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.cause;
+package org.spongepowered.api.event.cause.reason;
 
 /**
- * An enumeration of standard {@link DamageType}s.
+ * Represents a type of damage.
  */
-public final class DamageTypes {
-
-    public static final DamageType FIRE = null;
-    public static final DamageType MAGIC = null;
-    public static final DamageType EXPLOSIVE = null;
-    public static final DamageType PROJECTILE = null;
-
-    private DamageTypes() {}
+public interface DamageType {
 
 }

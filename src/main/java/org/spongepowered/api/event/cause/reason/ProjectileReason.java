@@ -23,27 +23,20 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.cause;
+package org.spongepowered.api.event.cause.reason;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.projectile.Projectile;
 
 /**
- * Represents the cause of an {@link Entity}'s health changing.
+ * Represents a reason sourced from a specific {@link Projectile}.
  */
-public interface HealthChangeCause extends Cause {
+public interface ProjectileReason extends Reason {
 
     /**
-     * Gets whether this damage cause's damage will be scaled by difficulty.
+     * Gets the {@link Projectile} for this reason.
      * 
-     * @return Scales with difficulty
+     * @return The reason
      */
-    boolean isScaledByDifficulty();
-
-    /**
-     * Gets whether this damage cause will still affect users in creative mode.
-     * 
-     * @return Affects creative mode users
-     */
-    boolean affectsCreativeMode();
+    Projectile getProjectile();
 
 }

@@ -23,35 +23,20 @@
  * THE SOFTWARE.
  */
 
-package org.spongepowered.api.event.cause;
+package org.spongepowered.api.event.cause.reason;
 
-import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 
 /**
- * Represents a cause of damage against an {@link Entity}.
+ * Represents a reason sourced from a specific {@link ProjectileSource}.
  */
-public interface DamageCause extends HealthChangeCause {
+public interface ProjectileSourceReason extends Reason {
 
     /**
-     * Gets whether this damage cause ignores the affected entities armor.
+     * Gets the {@link ProjectileSource} for this reason.
      * 
-     * @return Ignores armor
+     * @return The projectile source
      */
-    boolean bypassesArmor();
-
-    /**
-     * Gets whether this damage cause may be blocked.
-     * 
-     * @return May be blocked
-     */
-    boolean isBlockable();
-
-    /**
-     * Gets whether this damage cause is of the given type.
-     * 
-     * @param type The type to compare
-     * @return Is of the type
-     */
-    boolean isOfType(DamageType type);
+    ProjectileSource getProjectileSource();
 
 }

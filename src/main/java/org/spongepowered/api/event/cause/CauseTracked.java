@@ -25,9 +25,25 @@
 
 package org.spongepowered.api.event.cause;
 
+import org.spongepowered.api.event.cause.reason.Reason;
+
 /**
- * Represents the cause of an entity spawning into the world.
+ * Something that keeps track of the cause.
+ * 
+ * @param <T> The reason type
  */
-public interface EntitySpawnCause extends Cause {
+public interface CauseTracked<T extends Reason> {
+
+    /**
+     * Get the cause.
+     *
+     * <p>
+     * Parent causes, can be retrieved using {@link Cause#getParent()} if
+     * available.
+     * </p>
+     *
+     * @return The last cause
+     */
+    Cause<T> getCause();
 
 }
